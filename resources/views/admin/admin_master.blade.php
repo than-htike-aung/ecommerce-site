@@ -16,7 +16,12 @@
 	<!-- Style-->  
 	<link rel="stylesheet" href="{{asset('backend/css/style.css')}}">
 	<link rel="stylesheet" href="{{asset('backend/css/skin_color.css')}}">
-     
+
+  <link rel="stylesheet" href="{{asset('backend/css/toastr.min.css')}}">
+  
+  {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script> --}}
+
   </head>
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
@@ -27,6 +32,19 @@
     @include('admin.body.sidebar')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
+{{-- @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif
+
+@if(session()->has('fail'))
+  <div class="alert alert-danger">
+      {{ session()->get('fail') }}
+  </div>
+@endif --}}
+
 	 @yield('admin')
   </div>
   <!-- /.content-wrapper -->
@@ -50,7 +68,34 @@
 	<!-- Sunny Admin App -->
 	<script src="{{asset('backend/js/template.js')}}"></script>
 	<script src="{{asset('backend/js/pages/dashboard.js')}}"></script>
+
+  <script src="{{asset('backend/js/toastr.min.js')}}"></script>
 	
-	
+  
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break; 
+ }
+ @endif 
+</script>
+
+
+
 </body>
 </html>
