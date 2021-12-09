@@ -22,7 +22,7 @@
 
             </div> <!--end col md -2 -->
 
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
                     <h3 class="text-center">
                         <span class="text-danger">Hi.....</span>

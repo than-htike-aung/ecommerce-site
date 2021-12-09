@@ -47,7 +47,7 @@ Route::post('/update/change/password',[AdminProfileController::class, 'AdminUpda
 
 // User all routes
 
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum, web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
     $user = User::find($id);
 
