@@ -57,7 +57,8 @@
 </div>
 <!-- ./wrapper -->
   	
-	 
+{{-- <script 
+  ></script> --}}
 	<!-- Vendor JS -->
 	<script src="{{asset('backend/js/vendors.min.js')}}"></script>
     <script src="{{asset('assets/icons/feather-icons/feather.min.js')}}"></script>	
@@ -67,14 +68,19 @@
 	
   <script src="{{asset('assets/vendor_components/datatable/datatables.min.js')}}"></script>
 	<script src="{{asset('backend/js/pages/data-table.js')}}"></script>
-	<!-- Sunny Admin App -->
+	
+  <script src="{{asset('assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
+  <!-- Sunny Admin App -->
 	<script src="{{asset('backend/js/template.js')}}"></script>
 	<script src="{{asset('backend/js/pages/dashboard.js')}}"></script>
 
   <script src="{{asset('backend/js/toastr.min.js')}}"></script>
-	
+	<script src="{{asset('backend/assets/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
 
-
+  <!-- CK editor -->
+<script src="{{asset('assets/vendor_components/ckeditor/ckeditor.js')}}"></script>
+	<script src="{{asset('assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js')}}"></script>
+  <script src="{{asset('backend/js/pages/editor.js')}}"></script>
 <script>
  @if(Session::has('message'))
  var type = "{{ Session::get('alert-type','info') }}"
