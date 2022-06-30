@@ -165,7 +165,7 @@
 				 <div class="form-group">
 			<h5>Product Quantity <span class="text-danger">*</span></h5>
 			<div class="controls">
-				<input type="text" name="product_qty" value="{{$product->product_qty}}" class="form-control" required="">
+				<input type="text" name="product_qty" value="{{$product->product_qty}}" class="form-control" >
      @error('product_qty') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -216,7 +216,7 @@
 				 <div class="form-group">
 			<h5>Product Size En <span class="text-danger">*</span></h5>
 			<div class="controls">
-	 <input type="text" name="product_size_en" class="form-control" value="{{$product->product_size_en}}" data-role="tagsinput" required="">
+	 <input type="text" name="product_size_en" class="form-control" value="{{$product->product_size_en}}" data-role="tagsinput">
      @error('product_size_en') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -229,9 +229,9 @@
 			<div class="col-md-4">
 
 				 <div class="form-group">
-			<h5>Product Size Hin <span class="text-danger">*</span></h5>
+			<h5>Product Size Myanamr <span class="text-danger">*</span></h5>
 			<div class="controls">
-	 <input type="text" name="product_size_my" class="form-control" value="{{$product->product_size_my}}" data-role="tagsinput" required="">
+	 <input type="text" name="product_size_my" class="form-control" value="{{$product->product_size_my}}" data-role="tagsinput" >
      @error('product_size_my') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -300,7 +300,7 @@
 	    <div class="form-group">
 			<h5>Product Discount Price <span class="text-danger">*</span></h5>
 			<div class="controls">
-	 <input type="text" name="discount_price" value="{{$product->discount_price}}"  class="form-control"  required="">
+	 <input type="text" name="discount_price" value="{{$product->discount_price}}"  class="form-control" >
      @error('discount_price') 
 	 <span class="text-danger">{{ $message }}</span>
 	 @enderror
@@ -451,7 +451,7 @@
 
 						 
 						<div class="text-xs-right">
-<input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Product">
+<input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Product">
 						</div>
 					</form>
 

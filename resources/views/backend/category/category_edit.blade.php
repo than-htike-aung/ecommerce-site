@@ -20,7 +20,7 @@
                    <div class="table-responsive">
 <form action="{{route('category.update')}}" method="post">
            @csrf
-        <input type="hidden" name="id" value="{{$subcategory->id}}">
+        <input type="hidden" name="id" value="{{$category->id}}">
         {{-- <input type="hidden" name="old_image" value="{{$brand->brand_image}}"> --}}
            <div class="form-group">
             <h5>Category Name Eng <span class="text-danger">*</span></h5>
