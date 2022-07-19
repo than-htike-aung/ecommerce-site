@@ -646,12 +646,12 @@
         url: "{{ url('/coupon-apply') }}",
         success:function(data){
           couponCalculation();
-          $('#couponField').hide();
-          $('#coupon_name').val('');
+          // $('#couponField').hide();
+          // $('#coupon_name').val('');
               //  couponCalculation();
-              //  if (data.validity == true) {
-              //   $('#couponField').hide();
-              //  }
+               if (data.validity == true) {
+                $('#couponField').hide();
+               }
                
              // Start Message 
                 const Toast = Swal.mixin({

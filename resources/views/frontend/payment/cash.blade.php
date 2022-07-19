@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-Stripe Payment Page
+Cash on Delivery
 @endsection
 
 <style>
@@ -40,7 +40,7 @@ Stripe Payment Page
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="home.html">Home</a></li>
-                <li class='active'>Stripe</li>
+                <li class='active'>Cash on Delivery</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
@@ -105,9 +105,10 @@ Stripe Payment Page
                                 </div>
                                 <div class="row">
 
-                                    <form action=" {{ route('stripe.order') }}" method="post" id="payment-form">
+                                    <form action=" {{ route('cash.order') }}" method="post" id="payment-form">
                                         @csrf
                                         <div class="form-row">
+                                            <img src="{{ asset('frontend/assets/images/payments/cash.png') }}" alt="">
                                             <label for="card-element">
                                                 <input type="hidden" name="name" value="{{ $data['shipping_name'] }}">
                                                 <input type="hidden" name="email" value="{{ $data['shipping_email'] }}">
@@ -121,11 +122,11 @@ Stripe Payment Page
                                                 <input type="hidden" name="notes" value="{{ $data['notes'] }}">
                                             </label>
 
-                                            <div id="card-element">
+                                            {{-- <div id="card-element">
                                                 <!-- A Stripe Element will be inserted here. -->
                                             </div>
                                             <!-- Used to display form errors. -->
-                                            <div id="card-errors" role="alert"></div>
+                                            <div id="card-errors" role="alert"></div> --}}
                                         </div>
                                         <br>
                                         <button class="btn btn-primary">Submit Payment</button>

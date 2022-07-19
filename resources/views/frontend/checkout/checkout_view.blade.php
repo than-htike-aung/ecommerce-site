@@ -182,7 +182,7 @@ My Checkout
 										<hr>
 										<li>
 											@if(Session::has('coupon'))
-											<strong>SubTotal : </strong> ${{ $catTotal }}
+											<strong>SubTotal : </strong> ${{ $cartTotal }}
 											<strong>Coupon Name : </strong> {{ session()->get('coupon')['coupon_name']
 											}}
 											({{ session()->get('coupon')['coupon_discount'] }} % )
@@ -234,7 +234,7 @@ My Checkout
 									<div class="col-md-4">
 										<label for="">Cash</label>
 										<input type="radio" name="payment_method" value="cash">
-										<img src="{{ asset('frontend/assets/images/payments/2.png') }}" alt="">
+										<img src="{{ asset('frontend/assets/images/payments/6.png') }}" alt="">
 									</div>
 								</div> <!-- end row -->
 								<hr>

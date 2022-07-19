@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Mail\OrderMail;
 use App\Models\Order;
+use App\Mail\OrderMail;
 use App\Models\OrderItem;
-use Carbon\Carbon;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
-class StripeController extends Controller
+class CashController extends Controller
 {
-    public function StripeOrder(Request $request)
+    public function CashOrder(Request $request)
     {
         if (session()->has('coupon')) {
             $total_amount = session()->get('coupon')['total_amount'];
@@ -23,19 +22,7 @@ class StripeController extends Controller
             $total_amount = round(Cart::total());
         }
 
-        \Stripe\Stripe::setApiKey('sk_test_e2Bwoiaj3yQkRuEsfWsaVXYW00UBvQ4T1x');
 
-
-        $token = $_POST['stripeToken'];
-
-        $charge = \Stripe\Charge::create([
-            'amount' => $total_amount * 100,
-            'currency' => 'usd',
-            'description' => 'Easy online shop',
-            'source' => $token,
-            'metadata' => ['order_id' => uniqid()],
-        ]);
-        //dd($charge);
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
@@ -47,13 +34,12 @@ class StripeController extends Controller
             'post_code' => $request->post_code,
             'notes' => $request->notes,
 
-            'payment_type' => 'Stripe',
-            'payment_method' => 'Stripe',
-            'payment_type' => $charge->payment_method,
-            'transaction_id' => $charge->balance_transaction,
-            'currency' => $charge->currency,
+            'payment_type' => 'Cash on delivery',
+            'payment_method' => 'Cash on delivery',
+
+            'currency' => 'Usd',
             'amount' => $total_amount,
-            'order_number' => $charge->metadata->order_id,
+
             'invoice_no' => 'EOS' . mt_rand(10000000, 99999999),
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
