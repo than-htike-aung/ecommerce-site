@@ -177,6 +177,23 @@ $route = Route::current()->getName();
       </li>
 
 
+      <li class="treeview {{($prefix == '/stock') ? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Manage Stock</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'product.stock') ? 'active' : ''}}">
+            <a href="{{route('product.stock')}}"><i class="ti-more"></i>Product Stock</a>
+          </li>
+
+        </ul>
+      </li>
+
+
       <li class="treeview {{($prefix == '/reports') ? 'active' : ''}}">
         <a href="#">
           <i data-feather="file"></i>
@@ -209,7 +226,106 @@ $route = Route::current()->getName();
         </ul>
       </li>
 
+      <li class="treeview {{($prefix == '/adminuserrole') ? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Admin User Role</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'all.admin.users') ? 'active' : ''}}">
+            <a href="{{route('all.admin.users')}}"><i class="ti-more"></i>All Admin Users</a>
+          </li>
 
+        </ul>
+      </li>
+
+
+
+      <li class="treeview {{($prefix == '/blog') ? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Manage Blogs</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'blog.category') ? 'active' : ''}}">
+            <a href="{{route('blog.category')}}"><i class="ti-more"></i>Blog Category</a>
+          </li>
+          <li class="{{($route == 'list.post') ? 'active' : ''}}">
+            <a href="{{route('list.post')}}"><i class="ti-more"></i>List Blog Post</a>
+          </li>
+          <li class="{{($route == 'add.post') ? 'active' : ''}}">
+            <a href="{{route('add.post')}}"><i class="ti-more"></i>Add Blog Post</a>
+          </li>
+
+        </ul>
+      </li>
+
+
+
+
+      <li class="treeview {{($prefix == '/setting') ? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Manage Setting</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'site.setting') ? 'active' : ''}}">
+            <a href="{{route('site.setting')}}"><i class="ti-more"></i>Site Setting</a>
+          </li>
+
+          <li class="{{($route == 'seo.setting') ? 'active' : ''}}">
+            <a href="{{route('seo.setting')}}"><i class="ti-more"></i>SEO Setting</a>
+          </li>
+
+
+        </ul>
+      </li>
+
+      <li class="treeview {{($prefix == '/return') ? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Return Order</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'return.request') ? 'active' : ''}}">
+            <a href="{{route('return.request')}}"><i class="ti-more"></i>Return Request</a>
+          </li>
+
+
+        </ul>
+      </li>
+
+      <li class="treeview {{($prefix == '/review') ? 'active' : ''}}">
+        <a href="#">
+          <i data-feather="file"></i>
+          <span>Manage Review</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{($route == 'pending.review') ? 'active' : ''}}">
+            <a href="{{route('pending.review')}}"><i class="ti-more"></i>Pending Review</a>
+          </li>
+          <li class="{{($route == 'publish.review') ? 'active' : ''}}">
+            <a href="{{route('publish.review')}}"><i class="ti-more"></i>Publish Review</a>
+          </li>
+
+
+        </ul>
+      </li>
 
     </ul>
   </section>

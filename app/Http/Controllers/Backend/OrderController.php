@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,7 @@ class OrderController extends Controller
 {
     public function PendingOrders()
     {
-        $orders = Order::where('status', 'Pending')->orderBy('id', 'DESC')->get();
+        $orders = Order::where('status', 'pending')->orderBy('id', 'DESC')->get();
         return view('backend.orders.pending_orders', compact('orders'));
     }
 
@@ -108,6 +110,14 @@ class OrderController extends Controller
 
     public function ShippedToDelivered($order_id)
     {
+        $product = Order::where('product_id', $order_id)->get();
+        foreach ($product as $item) {
+            Product::where('id', $item->product_id)
+                ->update(['product_qty' => DB::raw('product_qty-' . $item->qty)]);
+        }
+
+
+
         Order::findOrFail($order_id)->update(['status' => 'delivered']);
 
         $notification = array(

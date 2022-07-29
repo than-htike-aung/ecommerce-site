@@ -3,22 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\AdminUserController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\User;
@@ -40,7 +46,9 @@ use Laravel\Jetstream\Rules\Role;
 //     return view('welcome');
 // });
 
-
+Route::get('/phpinfo', function () {
+    return phpinfo();
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminController::class, 'loginForm']);
@@ -308,4 +316,62 @@ Route::prefix('reports')->group(function () {
 // Admin Get All User routes
 Route::prefix('alluser')->group(function () {
     Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all-users');
+});
+
+// Blog site
+Route::prefix('blog')->group(function () {
+    Route::get('/category', [BlogController::class, 'BlogCategory'])->name('blog.category');
+    Route::post('/store', [BlogController::class, 'BlogCategoryStore'])->name('blogcategory.store');
+    Route::get('/category/edit/{id}', [BlogController::class, 'BlogCategoryEdit'])->name('blog.category.edit');
+    Route::post('/category/update', [BlogController::class, 'BlogCategoryUpdate'])->name('blog.category.update');
+    Route::get('/category/delete/{id}', [BlogController::class, 'BlogCategoryDelete'])->name('blog.category.delete');
+
+    // Admin View Blog Post Routes
+    Route::get('/add/post', [BlogController::class, 'AddBlogPost'])->name('add.post');
+    Route::get('/list/post', [BlogController::class, 'ListBlogPost'])->name('list.post');
+    Route::post('/post/store', [BlogController::class, 'BlogPostStore'])->name('post-store');
+    Route::get('/post/edit/{id}', [BlogController::class, 'BlogPostEdit'])->name('post.edit');
+    Route::post('/post/update/{id}', [BlogController::class, 'BlogPostUpdate'])->name('post.update');
+    Route::get('/post/delete/{id}', [BlogController::class, 'BlogPostDelete'])->name('post.delete');
+});
+
+// Frontend blog  show routes
+Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog');
+Route::get('/post/details/{id}', [HomeBlogController::class, 'DetailsBlogPost'])->name('post.details');
+Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'HomeBlogCatPost']);
+
+
+Route::prefix('setting')->group(function () {
+    Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
+    Route::post('/site/update', [SiteSettingController::class, 'SiteSettingUpdate'])->name('update.sitesetting');
+    Route::get('/seo', [SiteSettingController::class, 'SeoSetting'])->name('seo.setting');
+    Route::post('/seo/update', [SiteSettingController::class, 'SeoSettingUpdate'])->name('update.seosetting');
+});
+
+
+// Admin Return Order routes
+Route::prefix('return')->group(function () {
+    Route::get('admin/request', [ReturnController::class, 'ReturnRequest'])->name('return.request');
+    Route::get('/admin/return/approve/{order_id}', [ReturnController::class, 'ReturnRequestApprove'])->name('return.approve');
+});
+
+
+// Frontend Product Review Routes
+Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
+
+// Admin Manage Review Routes
+
+Route::prefix('review')->group(function () {
+    Route::get('/pending', [ReturnController::class, 'PendingReview'])->name('pending.review');
+    Route::get('/admin/approve/{id}', [ReviewController::class, 'ReviewApprove'])->name('review.approve');
+    Route::get('/publish', [ReviewController::class, 'PublishReview'])->name('publish.review');
+    Route::get('/delete/{id}', [ReviewController::class, 'DeleteReview'])->name('delete.review');
+});
+
+Route::prefix('stock')->group(function () {
+    Route::get('/product', [ProductController::class, 'ProductStock'])->name('product.stock');
+});
+
+Route::prefix('adminuserrole')->group(function () {
+    Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.user');
 });

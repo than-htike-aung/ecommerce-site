@@ -32,7 +32,7 @@
                                     @foreach($orders as $item)
                                     <tr>
                                         <td>{{$item->order_date}}</td>
-                                        <td>{{$item->invoice_no}}%</td>
+                                        <td>{{$item->invoice_no}}</td>
                                         <td>$ {{$item->amount}}</td>
                                         <td>{{$item->payment_method}}</td>
                                         <td><span class="badge badge-pill badge-primary">{{ $item->status }}</span></td>

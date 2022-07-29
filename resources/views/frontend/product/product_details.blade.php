@@ -1,10 +1,10 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-    {{$product->product_name_en}} Product Detail
+{{$product->product_name_en}} Product Detail
 @endsection
- <!-- ===== ======== HEADER : END ============================================== -->
- <div class="breadcrumb">
+<!-- ===== ======== HEADER : END ============================================== -->
+<div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
@@ -30,7 +30,7 @@
 
 
                     <!-- ============================================== HOT DEALS ============================================== -->
-                             @include('frontend.common.hot_deals')
+                    @include('frontend.common.hot_deals')
                     <!-- ============================================== HOT DEALS: END ============================================== -->
 
                     <!-- ============================================== NEWSLETTER ============================================== -->
@@ -41,7 +41,8 @@
                             <form>
                                 <div class="form-group">
                                     <label class="sr-only" for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Subscribe to our newsletter">
                                 </div>
                                 <button class="btn btn-primary">Subscribe</button>
                             </form>
@@ -55,8 +56,11 @@
                     <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
                         <div id="advertisement" class="advertisement">
                             <div class="item">
-                                <div class="avatar"><img src="{{asset('frontend/assets/images/testimonials/member1.png')}}" alt="Image"></div>
-                                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
+                                <div class="avatar"><img
+                                        src="{{asset('frontend/assets/images/testimonials/member1.png')}}" alt="Image">
+                                </div>
+                                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port
+                                    mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
                                 <div class="clients_author">John Doe <span>Abc Company</span> </div>
                                 <!-- /.container-fluid -->
                             </div>
@@ -64,14 +68,16 @@
 
                             <div class="item">
                                 <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image"></div>
-                                <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
+                                <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port
+                                    mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
                                 <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
                             </div>
                             <!-- /.item -->
 
                             <div class="item">
                                 <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image"></div>
-                                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
+                                <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port
+                                    mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
                                 <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
                                 <!-- /.container-fluid -->
                             </div>
@@ -96,16 +102,18 @@
                             <div class="product-item-holder size-big single-product-gallery small-gallery">
 
                                 <div id="owl-single-product">
-                            @foreach($multiImg as $img)
-                                
-                          
+                                    @foreach($multiImg as $img)
+
+
                                     <div class="single-product-gallery-item" id="slide{{$img->id}}">
-                                        <a data-lightbox="image-1" data-title="Gallery" href="{{asset($img->photo_name)}}">
-                                            <img class="img-responsive" alt="" src="{{asset($img->photo_name)}}" data-echo="{{asset($img->photo_name)}}" />
+                                        <a data-lightbox="image-1" data-title="Gallery"
+                                            href="{{asset($img->photo_name)}}">
+                                            <img class="img-responsive" alt="" src="{{asset($img->photo_name)}}"
+                                                data-echo="{{asset($img->photo_name)}}" />
                                         </a>
                                     </div>
-                                    <!-- /.single-product-gallery-item -->                                 
-                            @endforeach      
+                                    <!-- /.single-product-gallery-item -->
+                                    @endforeach
                                 </div>
                                 <!-- /.single-product-slider -->
 
@@ -113,15 +121,18 @@
                                 <div class="single-product-gallery-thumbs gallery-thumbs">
 
                                     <div id="owl-single-product-thumbnails">
-                                @foreach($multiImg as $img)
-                                    
-                                
+                                        @foreach($multiImg as $img)
+
+
                                         <div class="item">
-                                            <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide{{$img->id}}">
-                                                <img class="img-responsive" width="85" alt="" src="{{asset($img->photo_name)}}" data-echo="{{asset($img->photo_name)}}" />
+                                            <a class="horizontal-thumb active" data-target="#owl-single-product"
+                                                data-slide="1" href="#slide{{$img->id}}">
+                                                <img class="img-responsive" width="85" alt=""
+                                                    src="{{asset($img->photo_name)}}"
+                                                    data-echo="{{asset($img->photo_name)}}" />
                                             </a>
                                         </div>
-                                @endforeach       
+                                        @endforeach
                                     </div>
                                     <!-- /#owl-single-product-thumbnails -->
 
@@ -138,10 +149,10 @@
                             <div class="product-info">
                                 <h1 class="name" id="pname">
                                     @if(session()->get('language') == 'myanmar')
-                                        {{$product->product_name_my}}
-                                      
+                                    {{$product->product_name_my}}
+
                                     @else
-                                        {{$product->product_name_en}}
+                                    {{$product->product_name_en}}
                                     @endif
                                 </h1>
 
@@ -179,10 +190,10 @@
 
                                 <div class="description-container m-t-20">
                                     @if(session()->get('language') == 'myanmar')
-                                        {{$product->short_descp_my}}
-                                      
+                                    {{$product->short_descp_my}}
+
                                     @else
-                                        {{$product->short_descp_en}}
+                                    {{$product->short_descp_en}}
                                     @endif
                                 </div>
                                 <!-- /.description-container -->
@@ -192,25 +203,28 @@
                                         <div class="col-sm-6">
                                             <div class="price-box">
                                                 @if($product->discount_price == NULL)
-                                                    <span class="price">$ {{$product->selling_price}}</span>
+                                                <span class="price">$ {{$product->selling_price}}</span>
                                                 @else
                                                 <span class="price">$ {{$product->discount_price}}</span>
                                                 <span class="price-strike">$ {{$product->selling_price}}</span>
                                                 @endif
-                                               
-                                                
+
+
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
+                                                    title="Wishlist" href="#">
                                                     <i class="fa fa-heart"></i>
                                                 </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
+                                                    title="Add to Compare" href="#">
                                                     <i class="fa fa-signal"></i>
                                                 </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
+                                                    title="E-mail" href="#">
                                                     <i class="fa fa-envelope"></i>
                                                 </a>
                                             </div>
@@ -218,42 +232,46 @@
 
                                     </div>
                                     <!-- /.row -->
-                        {{-- ///////Start ADD product color And Product Size ///////// --}}
+                                    {{-- ///////Start ADD product color And Product Size ///////// --}}
                                     <div class="row">
                                         <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="info-title control-label">Choose Color <span>*</span></label>
-                    <select class="form-control unicase-form-control selectpicker" id="color">
-                        <option>--Choose Color--</option>
-                        @foreach($product_color_en as $color)
-                                 <option value="{{$color}}">{{ucwords($color)}}</option>
-                        @endforeach
-                    
-                       
-                    </select>
-                </div> <!-- /end form group -->
+                                            <div class="form-group">
+                                                <label class="info-title control-label">Choose Color
+                                                    <span>*</span></label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    id="color">
+                                                    <option>--Choose Color--</option>
+                                                    @foreach($product_color_en as $color)
+                                                    <option value="{{$color}}">{{ucwords($color)}}</option>
+                                                    @endforeach
+
+
+                                                </select>
+                                            </div> <!-- /end form group -->
                                         </div> <!-- /end col 6 -->
 
                                         <div class="col-sm-6">
-                <div class="form-group">
-                    @if($product->product_size_en == null)
+                                            <div class="form-group">
+                                                @if($product->product_size_en == null)
 
-                    @else
-                        <label class="info-title control-label">Choose Size <span>*</span></label>
-                        <select class="form-control unicase-form-control selectpicker" id="size">
-                            <option>--Choose Size--</option>
-                            @foreach($product_size_en as $size)
-                                <option value="{{$size}}">{{ucwords($size)}}</option>
-                            @endforeach
-                        </select>
-                    @endif
-                    
-                </div> <!-- /end form group --> 
+                                                @else
+                                                <label class="info-title control-label">Choose Size
+                                                    <span>*</span></label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    id="size">
+                                                    <option>--Choose Size--</option>
+                                                    @foreach($product_size_en as $size)
+                                                    <option value="{{$size}}">{{ucwords($size)}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @endif
+
+                                            </div> <!-- /end form group -->
                                         </div> <!-- /end col 6 -->
 
                                     </div>
                                     <!-- /.row -->
-                        {{-- /////// End product color And Product Size ///////// --}}
+                                    {{-- /////// End product color And Product Size ///////// --}}
                                 </div>
                                 <!-- /.price-container -->
 
@@ -268,8 +286,10 @@
                                             <div class="cart-quantity">
                                                 <div class="quant-input">
                                                     <div class="arrows">
-                                                        <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                        <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                                                        <div class="arrow plus gradient"><span class="ir"><i
+                                                                    class="icon fa fa-sort-asc"></i></span></div>
+                                                        <div class="arrow minus gradient"><span class="ir"><i
+                                                                    class="icon fa fa-sort-desc"></i></span></div>
                                                     </div>
                                                     <input type="text" id="qty" min="1" value="1">
                                                 </div>
@@ -279,7 +299,8 @@
                                         <input type="hidden" id="product_id" value="{{$product->id}}" min="1">
 
                                         <div class="col-sm-7">
-                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
+                                            <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
+                                                    class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
                                         </div>
 
 
@@ -289,6 +310,9 @@
                                 <!-- /.quantity-container -->
 
 
+
+                                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                <div class="addthis_inline_share_toolbox"></div>
 
 
 
@@ -319,9 +343,9 @@
                                     <div class="product-tab">
                                         <p class="text">
                                             @if(session()->get('language') == 'myanmar')
-                                                {!!$product->long_descp_my!!}
+                                            {!!$product->long_descp_my!!}
                                             @else
-                                                {!!$product->long_descp_en!!}
+                                            {!!$product->long_descp_en!!}
                                             @endif
                                         </p>
                                     </div>
@@ -333,15 +357,46 @@
 
                                         <div class="product-reviews">
                                             <h4 class="title">Customer Reviews</h4>
+                                            @php
+                                            $reviews = App\Models\Review::where('product_id', $product->id)
+                                            ->latest()->limit(5)->get();
+                                            @endphp
+                                            @foreach($reviews as $key => $item)
+                                            @if($item->status == 0)
 
+                                            @else
                                             <div class="reviews">
-                                                <div class="review">
-                                                    <div class="review-title"><span class="summary">We love this product</span><span class="date"><i class="fa fa-calendar"></i><span>1 days ago</span></span>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <img style="border-radius: 50%" src="{{ (!empty($item->user->profile_photo_path)) ? 
+                                                            url('upload/user_images/'.$item->user->profile_photo_path) :
+                                                            url('upload/no_image.jpg')
+                                                        }}" width="40px" height="40px;" alt="">
+                                                        <b>{{ $item->user->name }}</b>
                                                     </div>
-                                                    <div class="text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.Aliquam suscipit."</div>
+                                                    <div class="col-md-3">
+
+                                                    </div>
                                                 </div>
 
+
+
+
+                                                <div class="review">
+                                                    <div class="review-title"><span class="summary">{{ $item->summary
+                                                            }}</span><span class="date"><i
+                                                                class="fa fa-calendar"></i><span>{{
+                                                                Carbon\Carbon::parse($item->created_at)
+                                                                ->diffForHumans()}}</span></span>
+                                                    </div>
+                                                    <div class="text">{{ $item->comment }}</div>
+                                                </div>
+
+
                                             </div>
+                                            @endif
+                                            @endforeach
                                             <!-- /.reviews -->
                                         </div>
                                         <!-- /.product-reviews -->
@@ -351,73 +406,48 @@
                                         <div class="product-add-review">
                                             <h4 class="title">Write your own review</h4>
                                             <div class="review-table">
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="cell-label">&nbsp;</th>
-                                                                <th>1 star</th>
-                                                                <th>2 stars</th>
-                                                                <th>3 stars</th>
-                                                                <th>4 stars</th>
-                                                                <th>5 stars</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="cell-label">Quality</td>
-                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="cell-label">Price</td>
-                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="cell-label">Value</td>
-                                                                <td><input type="radio" name="quality" class="radio" value="1"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="2"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="3"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="4"></td>
-                                                                <td><input type="radio" name="quality" class="radio" value="5"></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <!-- /.table .table-bordered -->
-                                                </div>
-                                                <!-- /.table-responsive -->
+
                                             </div>
                                             <!-- /.review-table -->
 
                                             <div class="review-form">
+
+                                                @guest
+                                                <p>
+                                                    <b>For Add Product Review. You need to login first
+                                                        <a href="{{ route('login') }}">Login Here</a>
+                                                    </b>
+                                                </p>
+                                                @else
+
+
                                                 <div class="form-container">
-                                                    <form role="form" class="cnt-form">
+                                                    <form role="form" class="cnt-form" method="POST"
+                                                        action="{{ route('review.store') }}">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id"
+                                                            value="{{ $product->id }}">
 
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="exampleInputName">Your Name <span class="astk">*</span></label>
-                                                                    <input type="text" class="form-control txt" id="exampleInputName" placeholder="">
+                                                                    <label for="exampleInputName">Summary<span
+                                                                            class="astk">*</span></label>
+                                                                    <input type="text" class="form-control txt"
+                                                                        id="exampleInputName" placeholder=""
+                                                                        name="summary">
                                                                 </div>
                                                                 <!-- /.form-group -->
-                                                                <div class="form-group">
-                                                                    <label for="exampleInputSummary">Summary <span class="astk">*</span></label>
-                                                                    <input type="text" class="form-control txt" id="exampleInputSummary" placeholder="">
-                                                                </div>
-                                                                <!-- /.form-group -->
+
                                                             </div>
 
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="exampleInputReview">Review <span class="astk">*</span></label>
-                                                                    <textarea class="form-control txt txt-review" id="exampleInputReview" rows="4" placeholder=""></textarea>
+                                                                    <label for="exampleInputReview">Review <span
+                                                                            class="astk">*</span></label>
+                                                                    <textarea class="form-control txt txt-review"
+                                                                        id="exampleInputReview" rows="4" placeholder=""
+                                                                        name="comment"></textarea>
                                                                 </div>
                                                                 <!-- /.form-group -->
                                                             </div>
@@ -425,7 +455,9 @@
                                                         <!-- /.row -->
 
                                                         <div class="action text-right">
-                                                            <button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-upper">SUBMIT
+                                                                REVIEW</button>
                                                         </div>
                                                         <!-- /.action -->
 
@@ -433,6 +465,8 @@
                                                     <!-- /.cnt-form -->
                                                 </div>
                                                 <!-- /.form-container -->
+
+                                                @endguest
                                             </div>
                                             <!-- /.review-form -->
 
@@ -458,7 +492,8 @@
 
                                                 </div>
 
-                                                <button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
+                                                <button class="btn btn-upper btn-primary" type="submit">ADD
+                                                    TAGS</button>
                                             </div>
                                             <!-- /.form-container -->
                                         </form>
@@ -467,7 +502,8 @@
                                         <form role="form" class="form-inline form-cnt">
                                             <div class="form-group">
                                                 <label>&nbsp;</label>
-                                                <span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
+                                                <span class="text col-md-offset-3">Use spaces to separate tags. Use
+                                                    single quotes (') for phrases.</span>
                                             </div>
                                         </form>
                                         <!-- /.form-cnt -->
@@ -490,9 +526,9 @@
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">Related products</h3>
                     <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
-                @foreach($relatedProduct as $product)
-                    
-               
+                        @foreach($relatedProduct as $product)
+
+
 
                         <div class="item item-carousel">
                             <div class="products">
@@ -500,7 +536,10 @@
                                 <div class="product">
                                     <div class="product-image">
                                         <div class="image">
-                                            <a href="{{url('product/details/'. $product->id .'/'.$product->product_slug_en)}}"><img src="{{asset($product->product_thambnail)}}f" data-echo="{{asset($product->product_thambnail)}}" alt=""></a>
+                                            <a
+                                                href="{{url('product/details/'. $product->id .'/'.$product->product_slug_en)}}"><img
+                                                    src="{{asset($product->product_thambnail)}}f"
+                                                    data-echo="{{asset($product->product_thambnail)}}" alt=""></a>
                                         </div>
                                         <!-- /.image -->
 
@@ -509,21 +548,25 @@
                                     <!-- /.product-image -->
 
                                     <div class="product-info text-left">
-                                        <h3 class="name"><a href="{{url('product/details/'. $product->id .'/'.$product->product_slug_en)}}">
-                                            @if(session()->get('language') == 'myanmar')
+                                        <h3 class="name"><a
+                                                href="{{url('product/details/'. $product->id .'/'.$product->product_slug_en)}}">
+                                                @if(session()->get('language') == 'myanmar')
                                                 {{$product->product_name_my}}
-                                            @else
+                                                @else
                                                 {{$product->product_name_en}}
-                                          @endif       
-                                        </a></h3>
+                                                @endif
+                                            </a></h3>
                                         <div class="rating rateit-small"></div>
                                         <div class="description"></div>
 
                                         @if($product->discount_price == NULL)
-                                        <div class="product-price"> <span class="price">${{$product->selling_price}}</span> </div>
-                                      @else
-                                      <div class="product-price"> <span class="price">${{$product->discount_price}}</span> <span class="price-before-discount">${{$product->selling_price}}</span> </div>
-                                      @endif
+                                        <div class="product-price"> <span
+                                                class="price">${{$product->selling_price}}</span> </div>
+                                        @else
+                                        <div class="product-price"> <span
+                                                class="price">${{$product->discount_price}}</span> <span
+                                                class="price-before-discount">${{$product->selling_price}}</span> </div>
+                                        @endif
                                         <!-- /.product-price -->
 
                                     </div>
@@ -532,10 +575,12 @@
                                         <div class="action">
                                             <ul class="list-unstyled">
                                                 <li class="add-cart-button btn-group">
-                                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                            <i class="fa fa-shopping-cart"></i>													
-                        </button>
-                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                                    <button class="btn btn-primary icon" data-toggle="dropdown"
+                                                        type="button">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </button>
+                                                    <button class="btn btn-primary cart-btn" type="button">Add to
+                                                        cart</button>
 
                                                 </li>
 
@@ -562,7 +607,7 @@
                             <!-- /.products -->
                         </div>
                         <!-- /.item -->
-                @endforeach
+                        @endforeach
                     </div>
                     <!-- /.home-owl-carousel -->
                 </section>
@@ -579,4 +624,9 @@
     <!-- /.container -->
 </div>
 <!-- /.body-content -->
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62e2b50365b440b7"></script>
+
 @endsection

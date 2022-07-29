@@ -26,11 +26,12 @@
                                 <td class="col-md-2">
                                     <label for="">Invoice</label>
                                 </td>
+
                                 <td class="col-md-3">
-                                    <label for="">Order</label>
+                                    <label for="">Order Reason</label>
                                 </td>
                                 <td class="col-md-3">
-                                    <label for="">Action</label>
+                                    <label for="">Order Status</label>
                                 </td>
                             </tr>
                             @foreach($orders as $order)
@@ -47,27 +48,28 @@
                                 <td class="col-md-3">
                                     <label for="">{{ $order->invoice_no }}</label>
                                 </td>
+                                <td class="col-md-3">
+                                    <label for="">{{ $order->return_reason }}</label>
+                                </td>
                                 <td class="col-md-2">
                                     <label for="">
+                                        @if($order->return_order == 0)
                                         <span class="badge badge-pill badge-warning" style="background: #418DB9">
-                                            {{ $order->status }}
+                                            No Return Request
                                         </span>
-                                        <span class="badge badge-pill badge-warning" style="background: red">
-                                            Return Requested
+                                        @elseif($order->return_order == 1)
+                                        <span class="badge badge-pill badge-warning" style="background: #800000">
+                                            Pending
                                         </span>
+                                        @elseif($order->return_order == 2)
+                                        <span class="badge badge-pill badge-success" style="background: #008000">
+                                            Success
+                                        </span>
+                                        @endif
 
                                     </label>
                                 </td>
-                                <td class="col-md-1">
-                                    <a href="{{ url('user/order_details/' . $order->id) }}"
-                                        class="btn btn-sm btn-primary">
-                                        <i class="fa fa-eye"> View</i>
-                                    </a>
-                                    <a href="{{ url('user/invoice_download/' . $order->id) }}" style="margin-top: 5px"
-                                        class="btn btn-sm btn-danger">
-                                        <i class="fa fa-download" style="color: white"> Invoice</i>
-                                    </a>
-                                </td>
+
                             </tr>
 
                             @endforeach
