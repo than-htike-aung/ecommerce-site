@@ -110,7 +110,7 @@ class OrderController extends Controller
 
     public function ShippedToDelivered($order_id)
     {
-        $product = Order::where('product_id', $order_id)->get();
+        $product = OrderItem::where('order_id', $order_id)->get();
         foreach ($product as $item) {
             Product::where('id', $item->product_id)
                 ->update(['product_qty' => DB::raw('product_qty-' . $item->qty)]);

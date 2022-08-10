@@ -205,7 +205,7 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 // Add wishlist
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
 
-
+//////// USER must login  ///////////
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
 
     //WishList page
@@ -229,6 +229,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 
     Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
     Route::get('/cancel/orders', [AllUserController::class, 'CancelOrder'])->name('cancel.orders');
+
+    // Order tracking route
+    Route::post('/order/tracking', [AllUserController::class, 'OrderTracking'])->name('order.tracking');
 });
 
 // My cart All routes
@@ -373,5 +376,17 @@ Route::prefix('stock')->group(function () {
 });
 
 Route::prefix('adminuserrole')->group(function () {
-    Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.user');
+    Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.users');
+    Route::get('/add', [AdminUserController::class, 'AddAdminRole'])->name('add.admin');
+    Route::post('/store', [AdminUserController::class, 'StoreAdminRole'])->name('admin.user.store');
+    Route::get('/edit/{id}', [AdminUserController::class, 'EditAdminRole'])->name('edit.admin.user');
+    Route::post('/update', [AdminUserController::class, 'UpdateAdminRole'])->name('admin.user.update');
+    Route::get('/delete/{id}', [AdminUserController::class, 'DeleteAdminRole'])->name('delete.admin.user');
 });
+
+// Product search route
+
+Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');
+
+// Advance Search Routes
+Route::post('search-product', [IndexController::class, 'SearchProduct']);

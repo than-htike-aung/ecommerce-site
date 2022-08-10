@@ -12,6 +12,8 @@
             <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
             <li><a href="{{route('mycart')}}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
             <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>Checkout</a></li>
+            <li><a href="" type="button" data-toggle="modal" data-target="#ordertracking"><i
+                  class="icon fa fa-check"></i>Order Tracking</a></li>
             <li>
               @auth
               <a href="{{route('dashboard')}}"><i class="icon fa fa-user"></i>User Profile</a>
@@ -82,7 +84,8 @@
           <!-- /.contact-row -->
           <!-- ============================================================= SEARCH AREA ============================================================= -->
           <div class="search-area">
-            <form>
+            <form method="POST" action="{{ route('product.search') }}">
+              @csrf
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
                   <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
@@ -97,10 +100,12 @@
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Search here..." />
-                <a class="search-button" href="#"></a>
+                <input class="search-field" name="search" id="search" onfocus="search_result_show()"
+                  onblur="search_result_hide()" placeholder="Search here..." />
+                <button type="submit" class="search-button" href=""></button>
               </div>
             </form>
+            <div id="searchProducts"></div>
           </div>
           <!-- /.search-area -->
           <!-- ============================================================= SEARCH AREA : END ============================================================= -->
@@ -268,4 +273,56 @@
   <!-- /.header-nav -->
   <!-- ============================================== NAVBAR : END ============================================== -->
 
+
+  <!-- Order Modal -->
+  <div class="modal fade" id="ordertracking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tracking Your Order</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{{ route('order.tracking') }}">
+            @csrf
+            <div class="modal-body">
+              <label for="">Invoice Code</label>
+              <input type="text" name="code" required="" class="form-control" placeholder="your order invoice number">
+              <button class="btn btn-danger" style="margin-top:3px" type="submit">Track Now</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </header>
+
+<style>
+  #searchProducts {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 999;
+    border-radius: 8px;
+    margin-top: 3px
+  }
+
+  .search-area {
+    position: relative;
+  }
+</style>
+
+<script>
+  function search_result_hide(){
+    $("#searchProducts").slideUp();
+  }
+
+  function search_result_show(){
+    $("#searchProducts").slideDown();
+  }
+</script>

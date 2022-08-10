@@ -12,6 +12,7 @@ use App\Models\MultiImg;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SubSubCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Session\Session;
@@ -152,7 +153,10 @@ class IndexController extends Controller
             ->where('subcategory_id', $subcat_id)
             ->orderBy('id', 'DESC')->paginate(3);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        return view('frontend.product.subcategory_view', compact('products', 'categories'));
+
+        $breadsubcat = SubCategory::with(['category'])->where('id', $subcat_id)->get();
+
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat'));
     }
 
     // SubSubCategory Wise Data
@@ -162,7 +166,11 @@ class IndexController extends Controller
             ->where('subsubcategory_id', $susubcat_id)
             ->orderBy('id', 'DESC')->paginate(3);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        return view('frontend.product.sub_subcategory_view', compact('products', 'categories'));
+
+        $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $susubcat_id)->get();
+
+
+        return view('frontend.product.sub_subcategory_view', compact('products', 'categories', 'breadsubsubcat'));
     }
 
     // Product view with ajax
@@ -180,5 +188,26 @@ class IndexController extends Controller
             'color' => $product_color,
             'size' => $product_size
         ));
+    }
+
+    public function ProductSearch(Request $request)
+    {
+        $request->validate(["search" => "required"]);
+        $item = $request->search;
+        // echo $item;
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $products = Product::where('product_name_en', 'LIKE', "%$item%")->get();
+        return view('frontend.product.search', compact('products', 'categories'));
+    }
+
+    public function SearchProduct(Request $request)
+    {
+        // return $request;
+        $request->validate(["search" => "required"]);
+        $item = $request->search;
+        // echo $item;
+        $products = Product::where('product_name_en', 'LIKE', "%$item%")
+            ->select('product_name_en', 'product_thambnail', 'selling_price', 'id', 'product_slug_en')->limit(5)->get();
+        return view('frontend.product.search_product', compact('products'));
     }
 }
